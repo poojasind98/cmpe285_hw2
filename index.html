@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Stock Info App</title>
-</head>
-<body>
-  <h1>Finance Info App</h1>
-  <input id="symbol" placeholder="Enter stock symbol (e.g. AAPL)">
-  <button onclick="fetchStock()">Fetch Info</button>
-  <pre id="result"></pre>
+  <head>
+    <title>Finance Info App</title>
+  </head>
+  <body style="font-family: Arial; margin: 40px;">
+    <h2>Stock Info Viewer</h2>
+    <input id="symbol" placeholder="Enter stock symbol (e.g., AAPL)">
+    <button onclick="fetchStock()">Get Info</button>
+    <pre id="result" style="margin-top:20px; background:#f7f7f7; padding:10px;"></pre>
 
-  <script>
-    async function fetchStock() {
-      const symbol = document.getElementById('symbol').value;
-      const res = await fetch(`/api/stock?symbol=${symbol}`);
-      const data = await res.json();
-      document.getElementById('result').textContent = JSON.stringify(data, null, 2);
-    }
-  </script>
-</body>
+    <script>
+      async function fetchStock() {
+        const symbol = document.getElementById("symbol").value.trim();
+        if (!symbol) {
+          document.getElementById("result").textContent = "⚠️ Please enter a symbol.";
+          return;
+        }
+        document.getElementById("result").textContent = "Fetching data...";
+        const res = await fetch(`/api/run?symbol=${symbol}`);
+        const text = await res.text();
+        document.getElementById("result").innerHTML = text;
+      }
+    </script>
+  </body>
 </html>
