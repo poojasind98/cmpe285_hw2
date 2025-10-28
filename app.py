@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import your_existing_module  # or directly copy your code here
+import logic  # or directly copy your code here
 
 app = Flask(__name__)
 
@@ -9,7 +9,7 @@ def stock_data():
     if not symbol:
         return jsonify({"error": "Stock symbol required"}), 400
     try:
-        data = your_existing_module.get_stock_data(symbol)  # call your existing logic
+        data = logic.get_stock_data(symbol)  # call your existing logic
         return jsonify(data)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
