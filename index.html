@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Info App</title>
+</head>
+<body>
+  <h1>Finance Info App</h1>
+  <input id="symbol" placeholder="Enter stock symbol (e.g. AAPL)">
+  <button onclick="fetchStock()">Fetch Info</button>
+  <pre id="result"></pre>
+
+  <script>
+    async function fetchStock() {
+      const symbol = document.getElementById('symbol').value;
+      const res = await fetch(`/api/stock?symbol=${symbol}`);
+      const data = await res.json();
+      document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
