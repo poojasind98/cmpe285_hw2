@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from CMPE285_HW2 import get_stock_info
 from io import StringIO
 import sys
@@ -9,9 +9,8 @@ app = Flask(__name__)
 def run_script():
     symbol = request.args.get('symbol')
     if not symbol:
-        return jsonify({"error": "Please provide a stock symbol, e.g. ?symbol=AAPL"}), 400
+        return "<pre>⚠️ Please provide a stock symbol, e.g. ?symbol=AAPL</pre>"
 
-    # Capture the printed output from your get_stock_info() function
     old_stdout = sys.stdout
     sys.stdout = mystdout = StringIO()
 
@@ -28,5 +27,6 @@ def run_script():
 def home():
     return open("index.html").read()
 
+# ✅ this is what Vercel looks for:
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
