@@ -14,7 +14,7 @@ def get_stock_info(symbol):
 
         # Handle missing data
         if current_price is None or previous_close is None:
-            print("❌ Could not retrieve stock data. Please check the symbol.")
+            print("Could not retrieve stock data. Please check the symbol.")
             return
 
         # Calculate value and percentage change
@@ -31,7 +31,7 @@ def get_stock_info(symbol):
         print(f"{current_price} {sign_value}{value_change} ({sign_percent}{percent_change}%)")
 
     except Exception as e:
-        print(f"⚠️ Error: {e}")
+        print(f"Error: {e}")
         print("Please check your internet connection or the stock symbol.")
 
 if __name__ == "__main__":
@@ -40,6 +40,6 @@ if __name__ == "__main__":
         if symbol.lower() == "exit":
             break
         elif not symbol:
-            print("⚠️ Please enter a valid symbol.")
+            print("Please enter a valid symbol.")
             continue
         get_stock_info(symbol)
