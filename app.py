@@ -3,6 +3,10 @@ import subprocess
 
 app = Flask(__name__)
 
+@app.route('/test')
+def test():
+    return "✅ Flask is running correctly!"
+
 @app.route('/api/run', methods=['GET'])
 def run_script():
     symbol = request.args.get('symbol')
